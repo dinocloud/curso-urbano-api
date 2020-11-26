@@ -1,7 +1,7 @@
-import { BadRequestException } from '@nestjs/common';
-import { EntityRepository, Repository } from 'typeorm';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { Task } from './entity/task.entity';
+import { BadRequestException } from "@nestjs/common";
+import { EntityRepository, Repository } from "typeorm";
+import { CreateTaskDto } from "./dto/create-task.dto";
+import { Task } from "./entity/task.entity";
 
 @EntityRepository(Task)
 export class TaskRepository extends Repository<Task> {
@@ -10,7 +10,7 @@ export class TaskRepository extends Repository<Task> {
       where: { title: createTaskDto.title },
     });
     if (!!taskSaved) {
-      throw new BadRequestException('Existe una task con ese título');
+      throw new BadRequestException("Existe una task con ese título");
     }
 
     const task = new Task();

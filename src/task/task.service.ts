@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { Task } from './entity/task.entity';
-import { TaskRepository } from './task.repository';
+import { Injectable } from "@nestjs/common";
+import { CreateTaskDto } from "./dto/create-task.dto";
+import { Task } from "./entity/task.entity";
+import { TaskRepository } from "./task.repository";
 
 @Injectable()
 export class TaskService {
@@ -11,16 +11,15 @@ export class TaskService {
     return await this.taskRepository.createTask(createTaskDto);
   }
 
-    async findAll(): Promise<Task[]> {
-      return await Task.find();
-    }
+  async findAll(): Promise<Task[]> {
+    return await Task.find();
+  }
 
-    async findOne(id: number): Promise<Task> {
-      return await this.taskRepository.findOneById(id);
-      // return await Task.findOne(where: {id});
-      // return await this.taskRepository.findOne(where: {id})
-
-    }
+  async findOne(id: number): Promise<Task> {
+    return await this.taskRepository.findOneById(id);
+    // return await Task.findOne(where: {id});
+    // return await this.taskRepository.findOne(where: {id})
+  }
 
   //   async update(id: string): Promise<Task> {
 
