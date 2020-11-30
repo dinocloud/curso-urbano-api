@@ -36,4 +36,5 @@ lerna-debug.log*
 # Local
 docker-compose.yml
 .env
+.env.*
 dist

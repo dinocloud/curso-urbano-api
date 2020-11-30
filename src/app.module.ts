@@ -6,7 +6,11 @@ import { TaskModule } from './task/task.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
-  imports: [ConfigModule.forRoot(), TaskModule, TypeOrmModule.forRoot({})],
+  imports: [
+    ConfigModule.forRoot({ envFilePath: '.env.development' }),
+    TaskModule,
+    TypeOrmModule.forRoot({}),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
