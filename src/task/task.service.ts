@@ -1,5 +1,7 @@
 import { Injectable } from "@nestjs/common";
+import { CreateCommentDto } from "./dto/create-comment.dto";
 import { CreateTaskDto } from "./dto/create-task.dto";
+import { Comment } from "./entity/comment.entity";
 import { Task } from "./entity/task.entity";
 import { TaskRepository } from "./task.repository";
 
@@ -12,7 +14,7 @@ export class TaskService {
   }
 
   async findAll(): Promise<Task[]> {
-    return await Task.find();
+    return await Task.find({ relations: ["comment"] });
   }
 
   async findOne(id: number): Promise<Task> {
@@ -24,4 +26,11 @@ export class TaskService {
   //   async update(id: string): Promise<Task> {
 
   //   }
+
+  async createComment(
+    id: number,
+    createCommentDto: CreateCommentDto
+  ): Promise<Comment> {
+    return await this.taskRepository.createComment(id, createCommentDto);
+  }
 }
