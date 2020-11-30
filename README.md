@@ -28,7 +28,7 @@ $ npm run start:prod
 * TYPEORM_MIGRATIONS = src/migrations/*.ts
 * TYPEORM_MIGRATIONS_DIR = src/migrations
 
-## ENV.DEVELOPMENT vars
+## ENV.DEBUG vars
 
 * TYPEORM_CONNECTION = postgres
 * TYPEORM_URL = postgresql://username:password@localhost:port/databseName
