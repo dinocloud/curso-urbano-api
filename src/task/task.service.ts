@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { CreateTaskDto } from "./dto/create-task.dto";
+import { UpdateTaskDto } from "./dto/update-task.dto";
 import { Task } from "./entity/task.entity";
 import { TaskRepository } from "./task.repository";
 
@@ -21,7 +22,7 @@ export class TaskService {
     // return await this.taskRepository.findOne(where: {id})
   }
 
-  //   async update(id: string): Promise<Task> {
-
-  //   }
+  async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
+    return await this.taskRepository.updateTask(id, updateTaskDto);
+  }
 }

@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post, Put } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { CreateTaskDto } from "./dto/create-task.dto";
+import { UpdateTaskDto } from "./dto/update-task.dto";
 import { Task } from "./entity/task.entity";
 import { TaskService } from "./task.service";
 
@@ -24,8 +25,11 @@ export class TaskController {
     return await this.taskService.findOne(id);
   }
 
-  // @Put(':id')
-  // update(@Param('id') id: string): Promise<Task> {
-  //   return magic;
-  // }
+  @Put("/:id")
+  async update(
+    @Param("id") id: number,
+    @Body() updateTaskDto: UpdateTaskDto
+  ): Promise<Task> {
+    return await this.taskService.update(id, updateTaskDto);
+  }
 }
