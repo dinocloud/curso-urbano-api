@@ -4,13 +4,12 @@ import {
   PrimaryGeneratedColumn,
   BaseEntity,
   CreateDateColumn,
-  Unique,
   UpdateDateColumn,
-} from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
-import { MaxLength, IsNotEmpty } from 'class-validator';
+} from "typeorm";
+import { ApiProperty } from "@nestjs/swagger";
+import { MaxLength, IsNotEmpty, IsBoolean } from "class-validator";
 
-@Entity('task')
+@Entity("task")
 export class Task extends BaseEntity {
   @ApiProperty()
   @PrimaryGeneratedColumn()
@@ -18,19 +17,19 @@ export class Task extends BaseEntity {
 
   @ApiProperty()
   @MaxLength(10, { always: true })
-  @IsNotEmpty({ message: 'El título es requerido' })
+  @IsNotEmpty({ message: "El título es requerido" })
   @Column({ length: 10, nullable: false, unique: true })
   title: string;
 
   @ApiProperty()
   @MaxLength(500, { always: true })
-  @IsNotEmpty({ message: 'La descripción es requerida' })
-  @Column({ length: 500, nullable: false })
-  description: string;
+  @IsBoolean({ message: "Especificar si fue realizado o no" })
+  @Column({ default: false })
+  done: boolean;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: "timestamp" })
   updatedAt: Date;
 }

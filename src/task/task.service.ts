@@ -25,4 +25,8 @@ export class TaskService {
   async update(id: number, updateTaskDto: UpdateTaskDto): Promise<Task> {
     return await this.taskRepository.updateTask(id, updateTaskDto);
   }
+
+  async delete(id: number): Promise<void> {
+    return await this.taskRepository.deleteTask(id);
+  }
 }

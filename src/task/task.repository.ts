@@ -16,7 +16,6 @@ export class TaskRepository extends Repository<Task> {
 
     const task = new Task();
     task.title = createTaskDto.title;
-    task.description = createTaskDto.description;
     await this.save(task);
     return task;
   }
@@ -36,11 +35,20 @@ export class TaskRepository extends Repository<Task> {
         throw new BadRequestException("Existe una tarea con ese título");
       }
       task.title = updateTaskDto.title;
-      task.description = updateTaskDto.description;
+      task.done = updateTaskDto.done;
       await task.save();
       return task;
     } else {
       throw new NotFoundException(`La tarea no existe`);
+    }
+  }
+
+  async deleteTask(id: number): Promise<void> {
+    const task: Task = await this.findOneById(id);
+    if (!task) {
+      throw new NotFoundException(`La tarea no existe`);
+    } else {
+      await task.remove();
     }
   }
 }
